@@ -56,11 +56,20 @@ var isEven = function(n) { // this exercise is frivolous.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0){
+    return 0;
+  }if (n > 0){
+    return sumBelow(n-1) + n-1;
+  }else{
+    return sumBelow(n+1) + n+1;
+  }
+
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y){
+
 };
 
 // 7. Compute the exponent of a number.
@@ -69,6 +78,13 @@ var range = function(x, y){
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if (exp === 0){
+    return 1
+  }if (exp > 0){
+    return base * exponent(base, exp-1)
+  }else{
+    return 1/(base * exponent(base, -exp-1))
+  }
 };
 
 // 8. Determine if a number is a power of two.
@@ -76,21 +92,40 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 1){
+    return true;
+  }else if(n % 2 !== 0 || n === 0){
+    return false;
+  }
+  return powerOfTwo(n/2);
 };
 
 // 9. Write a function that reverses a string.
-var reverse = function(string) {
+var reverse = function(string){
+  if (string.length === 0){
+    return '';
+  }
+  return string[string.length-1] += reverse(string.substring(0, string.length-1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  // check ends, move towards middle
+  string = string.toUpperCase().split(' ').join('');
+  if (string.length < 2){
+    return true;
+  }
+  if (string[0] === string[string.length-1]){ // if first test true, check others.
+    return palindrome(string.substring(1, string.length-1))
+  }
+  return false;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
-// modulo(22,6) // 4
+// modulo(22,6<=) // 4
 var modulo = function(x, y) {
 };
 
